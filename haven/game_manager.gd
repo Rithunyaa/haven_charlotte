@@ -1,5 +1,8 @@
 extends Node
 
+@export var balloon_textures: Array[Texture2D]
+@onready var target_sprite: Sprite2D = $Sprite2D 
+
 @export var player_path: NodePath
 @export var target_path: NodePath
 @export var darkness_overlay_path: NodePath
@@ -86,39 +89,42 @@ func collect_balloon() -> void:
 	randomize_tent_position()
 
 func randomize_tent_position() -> void:
-	var min_distance: float = 150.0 
 	var new_pos = Vector2.ZERO
-	
-	for i in range(15):
-		var random_x = randf_range(-250, 250)
-		var random_y = randf_range(-250, 250)
+	# Give it a wider search radius so it always finds a spot easily
+	for i in range(30):
+		var random_x = randf_range(-300, 300)
+		var random_y = randf_range(-300, 300)
 		new_pos = spawn_position + Vector2(random_x, random_y)
 		
-		if new_pos.distance_to(spawn_position) >= min_distance:
+		if new_pos.distance_to(spawn_position) >= 120.0:
 			break
 			
 	tent.global_position = new_pos
 
 func randomize_target_position() -> void:
-	var min_distance_from_spawn: float = 150.0 
-	var min_distance_from_tent: float = 100.0 # Minimum gap between balloon and tent
 	var new_pos = Vector2.ZERO
 	
-	for i in range(20): # More attempts to find a clean spot
-		var random_x = randf_range(-250, 250)
-		var random_y = randf_range(-250, 250)
+	for i in range(30):
+		var random_x = randf_range(-300, 300)
+		var random_y = randf_range(-300, 300)
 		new_pos = spawn_position + Vector2(random_x, random_y)
 		
-		# Check distance from player spawn
-		if new_pos.distance_to(spawn_position) >= min_distance_from_spawn:
-			# Check distance from tent so they don't overlap
-			if tent:
-				if new_pos.distance_to(tent.global_position) >= min_distance_from_tent:
-					break # Found a safe spot away from both player and tent!
-			else:
-				break
-				
+		# Ensure it's not on top of the player spawn AND not overlapping the tent
+		var away_from_spawn = new_pos.distance_to(spawn_position) >= 100.0
+		var away_from_tent = true
+		
+		if tent:
+			away_from_tent = new_pos.distance_to(tent.global_position) >= 90.0
+			
+		if away_from_spawn and away_from_tent:
+			break
+			
 	target.global_position = new_pos
+	
+	# Scroll/randomize balloon color texture if you have textures assigned
+	if not balloon_textures.is_empty() and $Target/Sprite2D:
+		var random_texture = balloon_textures[randi() % balloon_textures.size()]
+		$Target/Sprite2D.texture = random_texture
 
 func trigger_game_over() -> void:
 	$AudioStreamPlayer2D.play()

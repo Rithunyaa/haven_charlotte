@@ -13,6 +13,7 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * speed
 	move_and_slide()
 	
+	update_animation(direction)
 
 func update_animation(direction: Vector2) -> void:
 	if direction == Vector2.ZERO:

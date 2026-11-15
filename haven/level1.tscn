@@ -10,10 +10,15 @@
 [ext_resource type="Texture2D" uid="uid://dyl4fvqheg7y3" path="res://assets/character_walk_right.png" id="5_hx44q"]
 [ext_resource type="Texture2D" uid="uid://c00jmgjxdhmal" path="res://assets/character_walk_up.png" id="6_n8vhr"]
 [ext_resource type="Texture2D" uid="uid://51o16kt15y1n" path="res://assets/ballon_final-removebg-preview.png" id="7_mx85b"]
+[ext_resource type="Texture2D" uid="uid://bhbapf3b5sfxk" path="res://assets/Drawing.sketchpad - Copyf.png" id="10_nauge"]
 [ext_resource type="AudioStream" uid="uid://d0qkupr3l63nj" path="res://assets/Game Over Scream.mp3" id="11_eqrsh"]
 [ext_resource type="Texture2D" uid="uid://jjcsp2ll81ax" path="res://assets/tent-removebg-preview.png" id="11_mx85b"]
+[ext_resource type="Texture2D" uid="uid://c3a622txnedx8" path="res://assets/Drawing-2.sketchpad - Copyf.png" id="11_ycv2e"]
+[ext_resource type="Texture2D" uid="uid://c515vq13ydcqi" path="res://assets/Drawing-4.sketchpad - Copyf.png" id="12_c5gc3"]
 [ext_resource type="Script" uid="uid://1g3vlnonsxus" path="res://CameraShake.gd" id="12_hx44q"]
+[ext_resource type="Texture2D" uid="uid://ce6erqq6muca8" path="res://assets/Drawing-5.sketchpad - Copyf.png" id="13_6e4cv"]
 [ext_resource type="AudioStream" uid="uid://cvkpqjk4jlh2w" path="res://assets/Acquire SFX.mp3" id="13_n8vhr"]
+[ext_resource type="Texture2D" uid="uid://om8wyj7o0tl6" path="res://assets/Drawing-6.sketchpad - Copyf.png" id="14_uuy0h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dopym"]
 size = Vector2(71, 193)
@@ -171,6 +176,7 @@ size = Vector2(177, 1271)
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1741416139]
 z_index = 50
+position = Vector2(2, -1)
 script = ExtResource("1_dopym")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=802988498]
@@ -265,6 +271,7 @@ vertical_alignment = 1
 
 [node name="GameManager" type="Node" parent="." unique_id=90576343]
 script = ExtResource("1_jwv3a")
+balloon_textures = Array[Texture2D]([ExtResource("7_mx85b"), ExtResource("10_nauge"), ExtResource("11_ycv2e"), ExtResource("12_c5gc3"), ExtResource("13_6e4cv"), ExtResource("14_uuy0h")])
 player_path = NodePath("../Player")
 target_path = NodePath("../Target_Object")
 darkness_overlay_path = NodePath("../DarknessOverlay")
