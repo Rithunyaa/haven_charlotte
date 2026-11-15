@@ -13,7 +13,7 @@ extends Node
 @onready var timer_label: RichTextLabel = get_node(timer_label_path)
 @onready var level_label: RichTextLabel = get_node(level_label_path)
 @onready var game_over_screen: Control = get_node(game_over_screen_path)
-@onready var tent: Area2D = $"../Obstacles/Tent"
+@onready var tent: StaticBody2D = $"../Obstacles/Tent"
 
 var current_level: int = 1
 var round_time: float = 10.0          # Set to your preferred round time (e.g., 10.0)

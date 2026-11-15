@@ -247,7 +247,6 @@ darkness_overlay_path = NodePath("../DarknessOverlay")
 timer_label_path = NodePath("../CanvasLayer/Control/Timer_Label")
 level_label_path = NodePath("../CanvasLayer/Control/Level_Label")
 game_over_screen_path = NodePath("../CanvasLayer/GameOverScreen")
-obstacle_scenes = null
 
 [node name="Bg" type="Sprite2D" parent="." unique_id=541100976]
 show_behind_parent = true
@@ -257,7 +256,7 @@ texture = ExtResource("4_v38iq")
 
 [node name="Obstacles" type="Node" parent="." unique_id=1413501518]
 
-[node name="Tent" type="Area2D" parent="Obstacles" unique_id=1947426647]
+[node name="Tent" type="StaticBody2D" parent="Obstacles" unique_id=1829043253]
 
 [node name="Sprite2D" type="Sprite2D" parent="Obstacles/Tent" unique_id=573526053]
 position = Vector2(228, 228)

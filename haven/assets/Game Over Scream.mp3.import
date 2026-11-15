@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d0qkupr3l63nj"
+path="res://.godot/imported/Game Over Scream.mp3-c619a242d966236e6cd938199c6e0d03.mp3str"
+
+[deps]
+
+source_file="res://assets/Game Over Scream.mp3"
+dest_files=["res://.godot/imported/Game Over Scream.mp3-c619a242d966236e6cd938199c6e0d03.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
