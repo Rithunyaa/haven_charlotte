@@ -151,31 +151,38 @@ func restart_game_from_beginning() -> void:
 	reset_round()
 	print("Restarted from Level 1")
 
+
 func spawn_obstacles() -> void:
 	if obstacle_scenes.is_empty():
 		print("No obstacle scenes assigned in GameManager!")
 		return
-		
+
 	var obstacle_count = 1
-	var min_distance_from_spawn: float = 50.0 
-	
+	var min_distance_from_spawn: float = 50.0
+
 	for i in range(obstacle_count):
 		var random_scene = obstacle_scenes[randi() % obstacle_scenes.size()]
 		var obs = random_scene.instantiate()
-		
+
 		var pos = Vector2.ZERO
+
 		for attempt in range(10):
 			var random_x = randf_range(-600, 600)
 			var random_y = randf_range(-600, 600)
 			pos = spawn_position + Vector2(random_x, random_y)
-			
+
 			if pos.distance_to(spawn_position) >= min_distance_from_spawn:
 				break
-		
+
+		# Add obstacle FIRST
+		get_parent().add_child(obs)
+
+		# Then set its position
 		obs.global_position = pos
-		get_parent().add_child.call_deferred(obs) 
+
 		active_obstacles.append(obs)
-		print("Tent spawned at: ", pos) 
+
+		print("Tent spawned at: ", pos)
 
 func clear_obstacles() -> void:
 	for obs in active_obstacles:
