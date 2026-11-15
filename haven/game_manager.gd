@@ -14,9 +14,11 @@ extends Node
 @onready var level_label: RichTextLabel = get_node(level_label_path)
 @onready var game_over_screen: Control = get_node(game_over_screen_path)
 @onready var tent: StaticBody2D = $"../Obstacles/Tent"
+@export var camera_path: NodePath
+@onready var camera = get_node_or_null(camera_path)
 
 var current_level: int = 1
-var round_time: float = 10.0          # Set to your preferred round time (e.g., 10.0)
+var round_time: float = 10.0         
 var round_time_left: float = 10.0
 
 var max_level_darkness_time: float = 15.0 
@@ -38,7 +40,7 @@ func _ready() -> void:
 	if game_over_screen:
 		game_over_screen.visible = false
 		
-	# --- CRITICAL FIX: Initialize level 1 obstacles and target position on startup ---
+
 
 	randomize_target_position()
 	randomize_tent_position()
@@ -55,6 +57,16 @@ func _process(delta: float) -> void:
 	
 	update_cumulative_darkness()
 	
+	if round_time_left <= 3.0:
+	
+		var urgency = 3.0 - round_time_left 
+		if camera:
+			camera.shake_intensity = urgency * 2.5 
+	else:
+		if camera:
+			camera.shake_intensity = 0.0
+	
+	
 	if level_time_elapsed >= max_level_darkness_time:
 		trigger_game_over()
 		return
@@ -70,9 +82,9 @@ func _input(event: InputEvent) -> void:
 
 func update_hud() -> void:
 	if timer_label:
-		timer_label.text = "Time: " + str(snapped(round_time_left, 0.1)) + "s"
+		timer_label.text = "Time Left: " + str(snapped(round_time_left, 0.1)) + "s"
 	if level_label:
-		level_label.text = "Level: " + str(current_level)
+		level_label.text = "Balloons Collected: " + str(current_level)
 
 func update_cumulative_darkness() -> void:
 	var darkness_progress = clamp(level_time_elapsed / max_level_darkness_time, 0.0, 1.0)
@@ -100,7 +112,7 @@ func advance_level() -> void:
 	var tween = create_tween()
 	tween.tween_property(darkness_overlay, "color", Color(1, 1, 1, 1), 0.5)
 	
-	# --- CRITICAL FIX: Clear old obstacles and spawn new ones for the next level ---
+
 
 	randomize_target_position()
 	randomize_tent_position()

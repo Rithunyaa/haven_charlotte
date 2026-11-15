@@ -9,10 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://doyjfnk8e8cie" path="res://assets/grass background.png" id="4_v38iq"]
 [ext_resource type="Texture2D" uid="uid://dyl4fvqheg7y3" path="res://assets/character_walk_right.png" id="5_hx44q"]
 [ext_resource type="Texture2D" uid="uid://c00jmgjxdhmal" path="res://assets/character_walk_up.png" id="6_n8vhr"]
+[ext_resource type="Texture2D" uid="uid://51o16kt15y1n" path="res://assets/ballon_final-removebg-preview.png" id="7_mx85b"]
 [ext_resource type="Texture2D" uid="uid://jjcsp2ll81ax" path="res://assets/tent-removebg-preview.png" id="11_mx85b"]
+[ext_resource type="Script" uid="uid://1g3vlnonsxus" path="res://CameraShake.gd" id="12_hx44q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dopym"]
-size = Vector2(109, 253)
+size = Vector2(71, 193)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eqrsh"]
 atlas = ExtResource("3_5j5gb")
@@ -157,37 +159,30 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ootpb"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v38iq"]
-size = Vector2(156.5, 145.5)
-
 [node name="Level_1" type="Node2D" unique_id=601929235]
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1741416139]
 script = ExtResource("1_dopym")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=802988498]
-position = Vector2(569.5, 347.5)
+position = Vector2(565.5, 353.5)
 shape = SubResource("RectangleShape2D_dopym")
 debug_color = Color(1.92523e-07, 0.64727664, 0.22369286, 0.41960785)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=712369790]
 position = Vector2(569, 349)
-scale = Vector2(8, 8)
+scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_qiqrj")
 
 [node name="Target_Object" type="Area2D" parent="." unique_id=296355201]
 
 [node name="Sprite2D" type="Sprite2D" parent="Target_Object" unique_id=1325409815]
 position = Vector2(835, 293)
-scale = Vector2(156.5, 145.5)
-texture = SubResource("PlaceholderTexture2D_ootpb")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_mx85b")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Target_Object" unique_id=194006208]
-position = Vector2(837.75, 289.25)
-shape = SubResource("RectangleShape2D_v38iq")
-debug_color = Color(0.6833022, 0.5023613, 0, 0.41960785)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Target_Object" unique_id=2078870203]
+polygon = PackedVector2Array(816, 209, 867, 228, 879, 276, 860, 311, 816, 314, 792, 264)
 
 [node name="DarknessOverlay" type="CanvasModulate" parent="." unique_id=1471605124]
 
@@ -202,9 +197,12 @@ offset_bottom = 647.0
 [node name="Level_Label" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1700314569]
 layout_mode = 0
 offset_left = 15.0
-offset_top = 595.0
-offset_right = 162.0
-offset_bottom = 635.0
+offset_top = 591.0
+offset_right = 809.0
+offset_bottom = 645.0
+theme_override_colors/default_color = Color(0.11372549, 0.023529412, 0.003921569, 1)
+theme_override_fonts/normal_font = ExtResource("2_ootpb")
+theme_override_font_sizes/normal_font_size = 50
 
 [node name="Timer_Label" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=319701529]
 layout_mode = 0
@@ -212,6 +210,9 @@ offset_left = 325.0
 offset_top = 10.0
 offset_right = 766.0
 offset_bottom = 50.0
+theme_override_colors/default_color = Color(0.113228776, 0.023394456, 0.0019961568, 1)
+theme_override_fonts/normal_font = ExtResource("2_ootpb")
+theme_override_font_sizes/normal_font_size = 50
 
 [node name="GameOverScreen" type="Control" parent="CanvasLayer" unique_id=34334009]
 visible = false
@@ -235,7 +236,7 @@ offset_bottom = 648.0
 theme_override_colors/default_color = Color(0.67726076, 0, 0.18860528, 1)
 theme_override_fonts/normal_font = ExtResource("2_ootpb")
 theme_override_font_sizes/normal_font_size = 40
-text = "You died! Click anywhere to restart."
+text = "Game Over! Click anywhere to restart."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -250,7 +251,7 @@ game_over_screen_path = NodePath("../CanvasLayer/GameOverScreen")
 
 [node name="Bg" type="Sprite2D" parent="." unique_id=541100976]
 show_behind_parent = true
-position = Vector2(578.5, 329.50003)
+position = Vector2(580, 319)
 scale = Vector2(0.695372, 0.7349786)
 texture = ExtResource("4_v38iq")
 
@@ -265,5 +266,9 @@ texture = ExtResource("11_mx85b")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles/Tent" unique_id=810152460]
 polygon = PackedVector2Array(251, -20, 396, 108, 490, 308, 212, 434, 46, 308, 76, 87)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=187193791]
+position = Vector2(572, 331)
+script = ExtResource("12_hx44q")
 
 [connection signal="body_entered" from="Target_Object" to="GameManager" method="_on_target_object_body_entered"]
