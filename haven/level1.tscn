@@ -10,11 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://dyl4fvqheg7y3" path="res://assets/character_walk_right.png" id="5_hx44q"]
 [ext_resource type="Texture2D" uid="uid://c00jmgjxdhmal" path="res://assets/character_walk_up.png" id="6_n8vhr"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lgp48"]
-radius = 79.31149
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dopym"]
-size = Vector2(114, 99)
+size = Vector2(109, 253)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eqrsh"]
 atlas = ExtResource("3_5j5gb")
@@ -166,20 +163,11 @@ size = Vector2(156.5, 145.5)
 
 [node name="Level_1" type="Node2D" unique_id=601929235]
 
-[node name="Obstacles" type="StaticBody2D" parent="." unique_id=699207756]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles" unique_id=1237273415]
-position = Vector2(179.75, 367.5)
-shape = SubResource("CircleShape2D_lgp48")
-debug_color = Color(0.5346562, 0, 0.12045958, 0.41960785)
-
-[node name="Sprite2D" type="Sprite2D" parent="Obstacles" unique_id=1045156468]
-
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1741416139]
 script = ExtResource("1_dopym")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=802988498]
-position = Vector2(233, 222.5)
+position = Vector2(569.5, 347.5)
 shape = SubResource("RectangleShape2D_dopym")
 debug_color = Color(1.92523e-07, 0.64727664, 0.22369286, 0.41960785)
 
@@ -187,7 +175,6 @@ debug_color = Color(1.92523e-07, 0.64727664, 0.22369286, 0.41960785)
 position = Vector2(569, 349)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_qiqrj")
-autoplay = "default"
 
 [node name="Target_Object" type="Area2D" parent="." unique_id=296355201]
 
