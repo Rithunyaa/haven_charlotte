@@ -13,17 +13,20 @@ extends Node
 @onready var timer_label: RichTextLabel = get_node(timer_label_path)
 @onready var level_label: RichTextLabel = get_node(level_label_path)
 @onready var game_over_screen: Control = get_node(game_over_screen_path)
-
+@onready var tent: Area2D = $"../Obstacles/Tent"
 
 var current_level: int = 1
-var round_time: float = 5.0          
-var round_time_left: float = 2.0
+var round_time: float = 10.0          # Set to your preferred round time (e.g., 10.0)
+var round_time_left: float = 10.0
 
 var max_level_darkness_time: float = 15.0 
 var level_time_elapsed: float = 0.0       
 
 var spawn_position: Vector2 = Vector2.ZERO
 var is_game_over: bool = false
+
+@export var obstacle_scenes: Array[PackedScene] 
+var active_obstacles: Array = []
 
 func _ready() -> void:
 	if player:
@@ -35,11 +38,15 @@ func _ready() -> void:
 	if game_over_screen:
 		game_over_screen.visible = false
 		
+	# --- CRITICAL FIX: Initialize level 1 obstacles and target position on startup ---
+
+	randomize_target_position()
+	randomize_tent_position()
+	
 	reset_round()
 	update_hud()
 
 func _process(delta: float) -> void:
-
 	if is_game_over:
 		return
 	
@@ -56,7 +63,6 @@ func _process(delta: float) -> void:
 		fail_round()
 	
 	update_hud()
-
 
 func _input(event: InputEvent) -> void:
 	if is_game_over and event is InputEventMouseButton and event.pressed:
@@ -94,7 +100,10 @@ func advance_level() -> void:
 	var tween = create_tween()
 	tween.tween_property(darkness_overlay, "color", Color(1, 1, 1, 1), 0.5)
 	
+	# --- CRITICAL FIX: Clear old obstacles and spawn new ones for the next level ---
+
 	randomize_target_position()
+	randomize_tent_position()
 	
 	if player:
 		player.global_position = spawn_position
@@ -102,13 +111,21 @@ func advance_level() -> void:
 	print("Advanced to level: ", current_level)
 
 func randomize_target_position() -> void:
-	var random_x = randf_range(-300, 300)
-	var random_y = randf_range(-300, 300)
-	target.global_position = spawn_position + Vector2(random_x, random_y)
+	var min_distance: float = 360.0 
+	var new_pos = Vector2.ZERO
+	
+	for i in range(10):
+		var random_x = randf_range(-200, 200)
+		var random_y = randf_range(-200, 200)
+		new_pos = spawn_position + Vector2(random_x, random_y)
+		
+		if new_pos.distance_to(spawn_position) >= min_distance:
+			break
+			
+	target.global_position = new_pos
 
 func trigger_game_over() -> void:
 	is_game_over = true
-	
 	
 	if game_over_screen:
 		game_over_screen.visible = true
@@ -121,7 +138,6 @@ func restart_game_from_beginning() -> void:
 	level_time_elapsed = 0.0
 	round_time_left = round_time
 	
-	
 	if game_over_screen:
 		game_over_screen.visible = false
 		
@@ -129,7 +145,21 @@ func restart_game_from_beginning() -> void:
 	
 	if player:
 		player.global_position = spawn_position
-		
+
 	randomize_target_position()
 	reset_round()
-	print("dead")
+	print("Restarted from Level 1")
+	
+func randomize_tent_position() -> void:
+	var min_distance: float = 360.0 
+	var new_pos = Vector2.ZERO
+	
+	for i in range(10):
+		var random_x = randf_range(-200, 200)
+		var random_y = randf_range(-200, 200)
+		new_pos = spawn_position + Vector2(random_x, random_y)
+		
+		if new_pos.distance_to(spawn_position) >= min_distance:
+			break
+			
+	tent.global_position = new_pos

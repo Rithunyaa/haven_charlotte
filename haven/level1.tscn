@@ -9,12 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://doyjfnk8e8cie" path="res://assets/grass background.png" id="4_v38iq"]
 [ext_resource type="Texture2D" uid="uid://dyl4fvqheg7y3" path="res://assets/character_walk_right.png" id="5_hx44q"]
 [ext_resource type="Texture2D" uid="uid://c00jmgjxdhmal" path="res://assets/character_walk_up.png" id="6_n8vhr"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_lgp48"]
-radius = 79.31149
+[ext_resource type="Texture2D" uid="uid://jjcsp2ll81ax" path="res://assets/tent-removebg-preview.png" id="11_mx85b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dopym"]
-size = Vector2(114, 99)
+size = Vector2(109, 253)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eqrsh"]
 atlas = ExtResource("3_5j5gb")
@@ -166,20 +164,11 @@ size = Vector2(156.5, 145.5)
 
 [node name="Level_1" type="Node2D" unique_id=601929235]
 
-[node name="Obstacles" type="StaticBody2D" parent="." unique_id=699207756]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles" unique_id=1237273415]
-position = Vector2(179.75, 367.5)
-shape = SubResource("CircleShape2D_lgp48")
-debug_color = Color(0.5346562, 0, 0.12045958, 0.41960785)
-
-[node name="Sprite2D" type="Sprite2D" parent="Obstacles" unique_id=1045156468]
-
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1741416139]
 script = ExtResource("1_dopym")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=802988498]
-position = Vector2(233, 222.5)
+position = Vector2(569.5, 347.5)
 shape = SubResource("RectangleShape2D_dopym")
 debug_color = Color(1.92523e-07, 0.64727664, 0.22369286, 0.41960785)
 
@@ -187,7 +176,6 @@ debug_color = Color(1.92523e-07, 0.64727664, 0.22369286, 0.41960785)
 position = Vector2(569, 349)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_qiqrj")
-autoplay = "default"
 
 [node name="Target_Object" type="Area2D" parent="." unique_id=296355201]
 
@@ -259,11 +247,24 @@ darkness_overlay_path = NodePath("../DarknessOverlay")
 timer_label_path = NodePath("../CanvasLayer/Control/Timer_Label")
 level_label_path = NodePath("../CanvasLayer/Control/Level_Label")
 game_over_screen_path = NodePath("../CanvasLayer/GameOverScreen")
+obstacle_scenes = null
 
 [node name="Bg" type="Sprite2D" parent="." unique_id=541100976]
 show_behind_parent = true
 position = Vector2(578.5, 329.50003)
 scale = Vector2(0.695372, 0.7349786)
 texture = ExtResource("4_v38iq")
+
+[node name="Obstacles" type="Node" parent="." unique_id=1413501518]
+
+[node name="Tent" type="Area2D" parent="Obstacles" unique_id=1947426647]
+
+[node name="Sprite2D" type="Sprite2D" parent="Obstacles/Tent" unique_id=573526053]
+position = Vector2(228, 228)
+scale = Vector2(2, 2)
+texture = ExtResource("11_mx85b")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles/Tent" unique_id=810152460]
+polygon = PackedVector2Array(251, -20, 396, 108, 490, 308, 212, 434, 46, 308, 76, 87)
 
 [connection signal="body_entered" from="Target_Object" to="GameManager" method="_on_target_object_body_entered"]
