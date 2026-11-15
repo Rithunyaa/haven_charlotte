@@ -11,9 +11,11 @@ config_version=5
 [application]
 
 config/name="Haven"
+config/tags=PackedStringArray("haven")
 run/main_scene="uid://blu8x2ipgj3no"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+<<<<<<<HEADrun/main_scene="uid://blu8x2ipgj3no"
 
 [display]
 
