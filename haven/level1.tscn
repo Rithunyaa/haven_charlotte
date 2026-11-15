@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://doyjfnk8e8cie" path="res://assets/grass background.png" id="4_v38iq"]
 [ext_resource type="Texture2D" uid="uid://dyl4fvqheg7y3" path="res://assets/character_walk_right.png" id="5_hx44q"]
 [ext_resource type="Texture2D" uid="uid://c00jmgjxdhmal" path="res://assets/character_walk_up.png" id="6_n8vhr"]
+[ext_resource type="PackedScene" uid="uid://bml3bkb8fr7eg" path="res://tent.tscn" id="9_5j5gb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dopym"]
 size = Vector2(109, 253)
@@ -246,6 +247,7 @@ darkness_overlay_path = NodePath("../DarknessOverlay")
 timer_label_path = NodePath("../CanvasLayer/Control/Timer_Label")
 level_label_path = NodePath("../CanvasLayer/Control/Level_Label")
 game_over_screen_path = NodePath("../CanvasLayer/GameOverScreen")
+obstacle_scenes = Array[PackedScene]([ExtResource("9_5j5gb")])
 
 [node name="Bg" type="Sprite2D" parent="." unique_id=541100976]
 show_behind_parent = true

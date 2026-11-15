@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bml3bkb8fr7eg"]
+
+[ext_resource type="Texture2D" uid="uid://jjcsp2ll81ax" path="res://assets/tent-removebg-preview.png" id="1_qxh2c"]
+
+[node name="Tent" type="StaticBody2D" unique_id=959790942]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1255100698]
+top_level = true
+z_index = 20
+scale = Vector2(1.9467455, 2.0514905)
+texture = ExtResource("1_qxh2c")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1518099589]
+z_index = 5
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(10, -125, 89, -57, 130, 47, 90, 66, 47, 59, 34, 82, -13, 109, -90, 38, -77, -67)
