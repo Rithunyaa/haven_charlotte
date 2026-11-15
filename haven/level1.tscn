@@ -3,14 +3,161 @@
 [ext_resource type="Script" uid="uid://dpag2kjscpvig" path="res://player.gd" id="1_dopym"]
 [ext_resource type="Script" uid="uid://c4ln3d7scab7g" path="res://game_manager.gd" id="1_jwv3a"]
 [ext_resource type="FontFile" uid="uid://bw6q4gdibujlh" path="res://assets/augiepixel.ttf" id="2_ootpb"]
+[ext_resource type="Texture2D" uid="uid://ck2evy6hplnrf" path="res://assets/character_idle.png" id="2_usj0q"]
+[ext_resource type="Texture2D" uid="uid://d3kd8q4vb4umy" path="res://assets/character_walk_down.png" id="3_5j5gb"]
+[ext_resource type="Texture2D" uid="uid://c0cjpy64tdnb1" path="res://assets/character_walk_left.png" id="4_mx85b"]
+[ext_resource type="Texture2D" uid="uid://doyjfnk8e8cie" path="res://assets/grass background.png" id="4_v38iq"]
+[ext_resource type="Texture2D" uid="uid://dyl4fvqheg7y3" path="res://assets/character_walk_right.png" id="5_hx44q"]
+[ext_resource type="Texture2D" uid="uid://c00jmgjxdhmal" path="res://assets/character_walk_up.png" id="6_n8vhr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lgp48"]
 radius = 79.31149
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jwv3a"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dopym"]
 size = Vector2(114, 99)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqrsh"]
+atlas = ExtResource("3_5j5gb")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3l65w"]
+atlas = ExtResource("3_5j5gb")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjtee"]
+atlas = ExtResource("3_5j5gb")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1idop"]
+atlas = ExtResource("3_5j5gb")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_beq0j"]
+atlas = ExtResource("4_mx85b")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nauge"]
+atlas = ExtResource("4_mx85b")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycv2e"]
+atlas = ExtResource("4_mx85b")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5gc3"]
+atlas = ExtResource("4_mx85b")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e4cv"]
+atlas = ExtResource("5_hx44q")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uuy0h"]
+atlas = ExtResource("5_hx44q")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52iny"]
+atlas = ExtResource("5_hx44q")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxqqj"]
+atlas = ExtResource("5_hx44q")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nyxr"]
+atlas = ExtResource("6_n8vhr")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43lh3"]
+atlas = ExtResource("6_n8vhr")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5le63"]
+atlas = ExtResource("6_n8vhr")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pieet"]
+atlas = ExtResource("6_n8vhr")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qiqrj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_usj0q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqrsh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3l65w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjtee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1idop")
+}],
+"loop": false,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_beq0j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nauge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycv2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5gc3")
+}],
+"loop": false,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6e4cv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uuy0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52iny")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxqqj")
+}],
+"loop": false,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nyxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43lh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5le63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pieet")
+}],
+"loop": false,
+"name": &"walk_up",
+"speed": 5.0
+}]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ootpb"]
 
@@ -26,18 +173,21 @@ position = Vector2(179.75, 367.5)
 shape = SubResource("CircleShape2D_lgp48")
 debug_color = Color(0.5346562, 0, 0.12045958, 0.41960785)
 
+[node name="Sprite2D" type="Sprite2D" parent="Obstacles" unique_id=1045156468]
+
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1741416139]
 script = ExtResource("1_dopym")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1363798486]
-position = Vector2(234.00002, 222.625)
-scale = Vector2(111.49999, 99.25)
-texture = SubResource("PlaceholderTexture2D_jwv3a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=802988498]
 position = Vector2(233, 222.5)
 shape = SubResource("RectangleShape2D_dopym")
 debug_color = Color(1.92523e-07, 0.64727664, 0.22369286, 0.41960785)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=712369790]
+position = Vector2(569, 349)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_qiqrj")
+autoplay = "default"
 
 [node name="Target_Object" type="Area2D" parent="." unique_id=296355201]
 
@@ -109,5 +259,11 @@ darkness_overlay_path = NodePath("../DarknessOverlay")
 timer_label_path = NodePath("../CanvasLayer/Control/Timer_Label")
 level_label_path = NodePath("../CanvasLayer/Control/Level_Label")
 game_over_screen_path = NodePath("../CanvasLayer/GameOverScreen")
+
+[node name="Bg" type="Sprite2D" parent="." unique_id=541100976]
+show_behind_parent = true
+position = Vector2(578.5, 329.50003)
+scale = Vector2(0.695372, 0.7349786)
+texture = ExtResource("4_v38iq")
 
 [connection signal="body_entered" from="Target_Object" to="GameManager" method="_on_target_object_body_entered"]

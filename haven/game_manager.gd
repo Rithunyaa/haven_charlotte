@@ -16,8 +16,8 @@ extends Node
 
 
 var current_level: int = 1
-var round_time: float = 10.0          
-var round_time_left: float = 10.0
+var round_time: float = 5.0          
+var round_time_left: float = 2.0
 
 var max_level_darkness_time: float = 15.0 
 var level_time_elapsed: float = 0.0       
