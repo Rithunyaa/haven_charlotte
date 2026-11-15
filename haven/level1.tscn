@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://doyjfnk8e8cie" path="res://assets/grass background.png" id="4_v38iq"]
 [ext_resource type="Texture2D" uid="uid://dyl4fvqheg7y3" path="res://assets/character_walk_right.png" id="5_hx44q"]
 [ext_resource type="Texture2D" uid="uid://c00jmgjxdhmal" path="res://assets/character_walk_up.png" id="6_n8vhr"]
-[ext_resource type="PackedScene" uid="uid://bml3bkb8fr7eg" path="res://tent.tscn" id="9_5j5gb"]
+[ext_resource type="Texture2D" uid="uid://jjcsp2ll81ax" path="res://assets/tent-removebg-preview.png" id="11_mx85b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dopym"]
 size = Vector2(109, 253)
@@ -247,12 +247,24 @@ darkness_overlay_path = NodePath("../DarknessOverlay")
 timer_label_path = NodePath("../CanvasLayer/Control/Timer_Label")
 level_label_path = NodePath("../CanvasLayer/Control/Level_Label")
 game_over_screen_path = NodePath("../CanvasLayer/GameOverScreen")
-obstacle_scenes = Array[PackedScene]([ExtResource("9_5j5gb")])
+obstacle_scenes = null
 
 [node name="Bg" type="Sprite2D" parent="." unique_id=541100976]
 show_behind_parent = true
 position = Vector2(578.5, 329.50003)
 scale = Vector2(0.695372, 0.7349786)
 texture = ExtResource("4_v38iq")
+
+[node name="Obstacles" type="Node" parent="." unique_id=1413501518]
+
+[node name="Tent" type="Area2D" parent="Obstacles" unique_id=1947426647]
+
+[node name="Sprite2D" type="Sprite2D" parent="Obstacles/Tent" unique_id=573526053]
+position = Vector2(228, 228)
+scale = Vector2(2, 2)
+texture = ExtResource("11_mx85b")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles/Tent" unique_id=810152460]
+polygon = PackedVector2Array(251, -20, 396, 108, 490, 308, 212, 434, 46, 308, 76, 87)
 
 [connection signal="body_entered" from="Target_Object" to="GameManager" method="_on_target_object_body_entered"]
