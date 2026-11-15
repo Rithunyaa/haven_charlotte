@@ -121,10 +121,12 @@ func randomize_target_position() -> void:
 			
 	target.global_position = new_pos
 	
-	# Scroll/randomize balloon color texture if you have textures assigned
-	if not balloon_textures.is_empty() and $Target/Sprite2D:
-		var random_texture = balloon_textures[randi() % balloon_textures.size()]
-		$Target/Sprite2D.texture = random_texture
+	# --- FIXED: Randomly pick and assign a color texture from your array ---
+	if not balloon_textures.is_empty() and target:
+		var sprite = target.get_node_or_null("Sprite2D") # Looks for the Sprite2D child inside your target node
+		if sprite:
+			var random_texture = balloon_textures[randi() % balloon_textures.size()]
+			sprite.texture = random_texture
 
 func trigger_game_over() -> void:
 	$AudioStreamPlayer2D.play()
