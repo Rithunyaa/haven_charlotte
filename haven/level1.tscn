@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://blu8x2ipgj3no"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lgp48"]
+radius = 79.31149
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jwv3a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dopym"]
+size = Vector2(114, 99)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ootpb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v38iq"]
+size = Vector2(156.5, 145.5)
+
+[node name="Level_1" type="Node2D" unique_id=601929235]
+
+[node name="Obstacles" type="StaticBody2D" parent="." unique_id=699207756]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles" unique_id=1237273415]
+position = Vector2(179.75, 367.5)
+shape = SubResource("CircleShape2D_lgp48")
+debug_color = Color(0.5346562, 0, 0.12045958, 0.41960785)
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1741416139]
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1363798486]
+position = Vector2(234.00002, 222.625)
+scale = Vector2(111.49999, 99.25)
+texture = SubResource("PlaceholderTexture2D_jwv3a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=802988498]
+position = Vector2(233, 222.5)
+shape = SubResource("RectangleShape2D_dopym")
+debug_color = Color(1.92523e-07, 0.64727664, 0.22369286, 0.41960785)
+
+[node name="Target_Object" type="Area2D" parent="." unique_id=296355201]
+
+[node name="Sprite2D" type="Sprite2D" parent="Target_Object" unique_id=1325409815]
+position = Vector2(835, 293)
+scale = Vector2(156.5, 145.5)
+texture = SubResource("PlaceholderTexture2D_ootpb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Target_Object" unique_id=194006208]
+position = Vector2(837.75, 289.25)
+shape = SubResource("RectangleShape2D_v38iq")
+debug_color = Color(0.6833022, 0.5023613, 0, 0.41960785)
+
+[node name="DarknessOverlay" type="CanvasModulate" parent="." unique_id=1471605124]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1770834562]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=107113212]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1155.0
+offset_bottom = 647.0
+
+[node name="Level_Label" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1700314569]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 595.0
+offset_right = 162.0
+offset_bottom = 635.0
+
+[node name="Timer_Label" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=319701529]
+layout_mode = 0
+offset_left = 325.0
+offset_top = 10.0
+offset_right = 766.0
+offset_bottom = 50.0
+
+[node name="GameManager" type="Node" parent="." unique_id=90576343]
